@@ -1,3 +1,5 @@
+import sun.print.PSStreamPrinterFactory;
+
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -13,5 +15,8 @@ public class WaterServlet extends GenericServlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         System.out.println("running method water tomcat");
+
+        String name=servletRequest.getParameter("name");
+        System.out.println(name);
     }
 }
