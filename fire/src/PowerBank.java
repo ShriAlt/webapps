@@ -14,6 +14,8 @@ public class PowerBank extends GenericServlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         System.out.println("running powerbank servlet");
-        String name
+        String name =servletRequest.getParameter("name");
+        String type=servletRequest.getParameter("type");
+        System.out.println("name"+name+"type:"+type);
     }
 }
