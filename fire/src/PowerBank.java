@@ -16,6 +16,7 @@ public class PowerBank extends GenericServlet {
         System.out.println("running powerbank servlet");
         String name =servletRequest.getParameter("name");
         String type=servletRequest.getParameter("type");
-        System.out.println("name"+name+"type:"+type);
+        String companyName=servletRequest.getParameter("companyName");
+        System.out.println("name"+name+"type:"+type+"company name"+companyName);
     }
 }
