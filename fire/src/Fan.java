@@ -15,5 +15,7 @@ public class Fan extends GenericServlet {
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
 
         System.out.println("running the fan Servlet");
+        String name=servletRequest.getParameter("name");
+        System.out.println(name);
     }
 }
