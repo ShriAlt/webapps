@@ -10,7 +10,6 @@ public class Fan extends GenericServlet {
     public Fan(){
         System.out.println("running the servlet by tom cat");
     }
-
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
 
