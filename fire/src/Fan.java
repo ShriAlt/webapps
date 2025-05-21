@@ -15,6 +15,10 @@ public class Fan extends GenericServlet {
 
         System.out.println("running the fan Servlet");
         String name=servletRequest.getParameter("name");
+        String type=servletRequest.getParameter("type");
+
+
         System.out.println(name);
+        System.out.println(type);
     }
 }
