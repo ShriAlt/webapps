@@ -15,7 +15,7 @@ public class PlantServlet extends GenericServlet {
         String name = servletRequest.getParameter("name");
         String cost = servletRequest.getParameter("cost");
         String type = servletRequest.getParameter("type");
-        String soilType = servletRequest.getParameter("soilType");
+        String soil = servletRequest.getParameter("soil");
 
         servletResponse.setContentType("text/html");
         PrintWriter out = servletResponse.getWriter();

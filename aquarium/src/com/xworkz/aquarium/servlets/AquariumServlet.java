@@ -8,21 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "AquariumServlet")
+@WebServlet(urlPatterns = "/AquariumServlet",loadOnStartup = 1)
 public class AquariumServlet extends GenericServlet {
     @Override
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
         String model = request.getParameter("model");
         String shape = request.getParameter("shape");
         String cost = request.getParameter("cost");
-        String length = request.getParameter("length");
-        String width = request.getParameter("width");
-        String height = request.getParameter("height");
-        String stNumber = request.getParameter("number");
+        String height = request.getParameter("capacity");
+        String company = request.getParameter("company");
 
-        int number= Integer.parseInt(stNumber);
+//        int number= Integer.parseInt(stNumber);
 
-        response.setContentType("html/text");
+        response.setContentType("text/html");
 
         PrintWriter writer=response.getWriter();
 
