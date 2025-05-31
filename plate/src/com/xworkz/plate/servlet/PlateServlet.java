@@ -25,6 +25,8 @@ public class PlateServlet extends GenericServlet {
         String producer=servletRequest.getParameter("producer");
         String director=servletRequest.getParameter("director");
         String strBudget =servletRequest.getParameter("budget");
+        String director=servletRequest.getParameter("director");
+        String strBudget =servletRequest.getParameter("budget");
 
         int salary=Integer.parseInt(strSalary);
         int budget=Integer.parseInt(strBudget);
