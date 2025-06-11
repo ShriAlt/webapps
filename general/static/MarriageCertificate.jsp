@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-black tertiary navbar-dark">
             <div class="container-fluid">
               <a class="navbar-brand" href="index.jsp">GENERAL</a>
     

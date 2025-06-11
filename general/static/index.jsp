@@ -8,7 +8,7 @@
     <title>index</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-black tertiary navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.jsp">GENERAL</a>
 
@@ -28,6 +28,13 @@
           </div>
         </div>
       </nav>
+
+    <div class="container text-center">
+        <h1>HELLO...!</h1>
+        <h2><strong>WelCome to General Applications..!</strong></h2>
+    </div>
+
+
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
