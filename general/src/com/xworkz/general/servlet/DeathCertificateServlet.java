@@ -1,6 +1,10 @@
 package com.xworkz.general.servlet;
 
 import com.xworkz.general.dto.DeathCertificateDTO;
+import com.xworkz.general.service.BirthCertificateImpl;
+import com.xworkz.general.service.BirthCertificateService;
+import com.xworkz.general.service.DeathCertificateImpl;
+import com.xworkz.general.service.DeathCertificateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,5 +33,8 @@ public class DeathCertificateServlet extends HttpServlet {
 
         DeathCertificateDTO deathCertificateDTO=new DeathCertificateDTO(fullName,causeOfDeath,dateOfDeath,timeOfDeath,ageAtDeath,certifiedBy,hospitalName,mannerOfDeath,gender,identifyingMarks);
         System.out.println("dto"+deathCertificateDTO);
+
+        DeathCertificateService deathCertificateService=new DeathCertificateImpl();
+        deathCertificateService.validate(deathCertificateDTO);
     }
 }

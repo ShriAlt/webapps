@@ -1,6 +1,8 @@
 package com.xworkz.general.servlet;
 
 import com.xworkz.general.dto.BirthCertificateDTO;
+import com.xworkz.general.service.BirthCertificateImpl;
+import com.xworkz.general.service.BirthCertificateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +31,9 @@ public class BirthCertificateServlet extends HttpServlet {
 
         BirthCertificateDTO dto=new BirthCertificateDTO(birthId,hospitalName,fatherName,motherName,dateOfBirth,timeOfBirth,doctorName,nurseName,hospitalType);
         System.out.println("dto:"+dto);
+
+        BirthCertificateService birthCertificateService=new BirthCertificateImpl();
+        birthCertificateService.birthCertificateValidate(dto);
 
 
     }

@@ -1,6 +1,8 @@
 package com.xworkz.general.servlet;
 
 import com.xworkz.general.dto.JobApplicationDTO;
+import com.xworkz.general.service.JobService;
+import com.xworkz.general.service.JobServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +24,9 @@ public class JobApplicationServlet extends HttpServlet {
 
         JobApplicationDTO jobApplicationDTO= new JobApplicationDTO(fullName,email,education,skills,expectedSalary,experience);
         System.out.println("dto"+jobApplicationDTO);
+
+        JobService jobService=new JobServiceImpl();
+        jobService.validate(jobApplicationDTO);
 
         RequestDispatcher requestDispatcher=req.getRequestDispatcher("");
         req.setAttribute("jobDto",jobApplicationDTO);

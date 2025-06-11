@@ -1,6 +1,8 @@
 package com.xworkz.general.servlet;
 
 import com.xworkz.general.dto.PassportDTO;
+import com.xworkz.general.service.PassportService;
+import com.xworkz.general.service.PassportServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,5 +27,8 @@ public class PassportServlet extends HttpServlet {
 
         PassportDTO passportDTO=new PassportDTO(applicantName,aadhaarNo,address,panNo,country,state,city,pinCode,passportType,paymentRef);
         System.out.println("dto :"+passportDTO);
+
+        PassportService passportService=new PassportServiceImpl();
+        passportService.validate(passportDTO);
     }
 }

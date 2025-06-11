@@ -1,6 +1,8 @@
 package com.xworkz.general.servlet;
 
 import com.xworkz.general.dto.DrivingLicenseDTO;
+import com.xworkz.general.service.DrivingService;
+import com.xworkz.general.service.DrivingServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,5 +21,8 @@ public class DrivingLicenseServlet extends HttpServlet {
         String vehicleType =req.getParameter("vehicleType");
         DrivingLicenseDTO drivingLicenseDTO=new DrivingLicenseDTO(fullName,address,mobile,appliedDate,vehicleType);
         System.out.println("dto"+drivingLicenseDTO);
+
+        DrivingService drivingService=new DrivingServiceImpl();
+        drivingService.validate(drivingLicenseDTO);
     }
 }

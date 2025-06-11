@@ -1,6 +1,8 @@
 package com.xworkz.general.servlet;
 
 import com.xworkz.general.dto.MarriageCertificateDTO;
+import com.xworkz.general.service.MarrigeCertificateImpl;
+import com.xworkz.general.service.MarrigeCertificateService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +27,8 @@ public class MarriageCertificateServlet extends HttpServlet {
 
         MarriageCertificateDTO marriageCertificateDTO=new MarriageCertificateDTO(groomName,brideName,location,address,religion,marriageDate,witness1,witness2,officerPresent);
         System.out.println("dto"+marriageCertificateDTO);
+        MarrigeCertificateService marrigeCertificateService=new MarrigeCertificateImpl();
+        marrigeCertificateService.validate(marriageCertificateDTO);
 
     }
 }
