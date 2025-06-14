@@ -16,7 +16,7 @@ public class PassportServlet extends HttpServlet {
          String applicantName =req.getParameter("applicantName");
         double aadhaarNo =Double.parseDouble(req.getParameter("aadhaarNo"));
         String address =req.getParameter("address");
-        double panNo =Double.parseDouble(req.getParameter("panNo"));
+        String panNo =req.getParameter("panNo");
         String country =req.getParameter("country");
         String state =req.getParameter("state");
         String city =req.getParameter("city");

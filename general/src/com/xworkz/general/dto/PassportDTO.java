@@ -7,7 +7,7 @@ public class PassportDTO implements Serializable {
     private String applicantName;
     private double aadhaarNo;
     private String address;
-    private double panNo;
+    private String panNo;
     private String country;
     private String state;
     private String city;
@@ -18,7 +18,7 @@ public class PassportDTO implements Serializable {
     public PassportDTO() {
     }
 
-    public PassportDTO(String applicantName, double aadhaarNo, String address, double panNo, String country, String state, String city, int pinCode, String passportType, double paymentRef) {
+    public PassportDTO(String applicantName, double aadhaarNo, String address, String panNo, String country, String state, String city, int pinCode, String passportType, double paymentRef) {
         this.applicantName = applicantName;
         this.aadhaarNo = aadhaarNo;
         this.address = address;
@@ -55,11 +55,11 @@ public class PassportDTO implements Serializable {
         this.address = address;
     }
 
-    public double getPanNo() {
+    public String getPanNo() {
         return panNo;
     }
 
-    public void setPanNo(double panNo) {
+    public void setPanNo(String panNo) {
         this.panNo = panNo;
     }
 
