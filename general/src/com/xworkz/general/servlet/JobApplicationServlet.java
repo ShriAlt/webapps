@@ -26,10 +26,25 @@ public class JobApplicationServlet extends HttpServlet {
         System.out.println("dto"+jobApplicationDTO);
 
         JobService jobService=new JobServiceImpl();
-        jobService.validate(jobApplicationDTO);
+        String result=jobService.validate(jobApplicationDTO);
 
-        RequestDispatcher requestDispatcher=req.getRequestDispatcher("");
-        req.setAttribute("jobDto",jobApplicationDTO);
+        RequestDispatcher requestDispatcher=req.getRequestDispatcher("JobApplication.jsp");
+        req.setAttribute("result",result);
+
+        if (!result.equals("registered successfully")){
+            req.setAttribute("jobApplicationDTO",jobApplicationDTO);
+        }
         requestDispatcher.forward(req,resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id=Integer.parseInt(req.getParameter("id"));
+        JobService jobService=new JobServiceImpl();
+        JobApplicationDTO dto=jobService.searchForId(id);
+        if (dto==null){
+            System.out.println("id is not valid");
+        }
+        else System.out.println("id is valid");
     }
 }

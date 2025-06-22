@@ -37,13 +37,13 @@
 
     <form class="row g-3" action="JobApplicationServlet" method="post">
         <div class="col-md-6">
-            <label for="name" class="form-label">Full Name</label>
-            <input type="text" class="form-control" id="name" name="fullName" placeholder="Enter Full Name" required>
+            <label for="name" class="form-label">Full Name</label> <span style="color: red">${result}</span>
+            <input type="text" class="form-control" id="name" name="fullName" placeholder="Enter Full Name"  value="${jobApplicationDTO.fullName}" required >
         </div>
 
         <div class="col-md-6">
             <label for="email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"  value="${jobApplicationDTO.email}" required  >
         </div>
 
         <div class="col-md-6">

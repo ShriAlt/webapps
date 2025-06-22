@@ -8,7 +8,20 @@ public class JobServiceImpl implements JobService {
     @Override
     public String validate(JobApplicationDTO dto) {
         JobRepository jobRepository=new JobRepositoryImpl();
+
+        if(dto.getFullName() ==null || dto.getFullName().length()<4 || dto.getFullName().length()>30){
+
+            return "enter the valid name";
+        }
         jobRepository.save(dto);
-        return "Failed";
+        return "registered successfully";
+    }
+
+    @Override
+    public JobApplicationDTO searchForId(int id) {
+        if (id<=0){
+            return null;
+        }
+        return JobService.super.searchForId(id);
     }
 }
