@@ -26,7 +26,6 @@
                 <a class="nav-link" href="MarriageCertificate.jsp"> Marriage Certificate</a>
                 <a class="nav-link" href="JobApplicationSearch.jsp"> Search Job</a>
 
-
             </div>
         </div>
     </div>
