@@ -39,12 +39,18 @@ public class JobApplicationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         int id=Integer.parseInt(req.getParameter("id"));
+
         JobService jobService=new JobServiceImpl();
         JobApplicationDTO dto=jobService.searchForId(id);
         if (dto==null){
-            System.out.println("id is not valid");
+            System.out.println("invalid input");
         }
-        else System.out.println("id is valid");
+            RequestDispatcher requestDispatcher= req.getRequestDispatcher("JobApplicationSearch.jsp");
+            req.setAttribute("dto",dto);
+            req.setAttribute("id",id);
+            requestDispatcher.forward(req,resp);
+
     }
 }

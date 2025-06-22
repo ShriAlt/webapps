@@ -4,6 +4,16 @@ import java.io.Serializable;
 
 public class JobApplicationDTO implements Serializable {
     private String fullName;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String email;
     private String education;
     private String skills;

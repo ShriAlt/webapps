@@ -38,6 +38,12 @@
         <button type="submit">search</button>
     </form>
 
+    <h2>Details on id ${id}</h2>
+    Email: ${dto.email}<br>
+    Experience: ${dto.experience}<br>
+    Skills: ${dto.skills}<br>
+    ExpectedSalary: ${dto.expectedSalary}<br>
+
 </div>
 
 

@@ -22,6 +22,11 @@ public class JobServiceImpl implements JobService {
         if (id<=0){
             return null;
         }
-        return JobService.super.searchForId(id);
+        else {
+            JobRepository jobRepository=new JobRepositoryImpl();
+            JobApplicationDTO jobApplicationDTO=jobRepository.findById(id);
+        return jobApplicationDTO;
+        }
+
     }
 }
