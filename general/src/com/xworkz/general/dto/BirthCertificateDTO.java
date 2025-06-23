@@ -7,6 +7,16 @@ import java.time.LocalTime;
 public class BirthCertificateDTO implements Serializable {
 
     private String birthId;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String hospitalName;
     private String fatherName;
     private String motherName;

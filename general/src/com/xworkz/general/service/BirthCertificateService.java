@@ -5,4 +5,5 @@ import com.xworkz.general.dto.BirthCertificateDTO;
 public interface BirthCertificateService {
 
     String birthCertificateValidate(BirthCertificateDTO dto);
+    BirthCertificateDTO findById(int id);
 }

@@ -12,4 +12,16 @@ public  class BirthCertificateImpl implements BirthCertificateService{
         birthCertificateRepository.save(dto);
         return "failed";
     }
+
+    @Override
+    public BirthCertificateDTO findById(int id) {
+        if (id>0){
+            BirthCertificateRepository birthCertificateRepository=new BirthCertificateRepositoryImpl();
+            BirthCertificateDTO dto=birthCertificateRepository.findById(id);
+//            System.out.println("servive dto :"+dto);
+            return dto;
+        }
+
+        return null;
+    }
 }

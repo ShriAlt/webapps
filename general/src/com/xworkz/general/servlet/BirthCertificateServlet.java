@@ -4,6 +4,7 @@ import com.xworkz.general.dto.BirthCertificateDTO;
 import com.xworkz.general.service.BirthCertificateImpl;
 import com.xworkz.general.service.BirthCertificateService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,29 @@ public class BirthCertificateServlet extends HttpServlet {
 
         BirthCertificateService birthCertificateService=new BirthCertificateImpl();
         birthCertificateService.birthCertificateValidate(dto);
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id=Integer.parseInt(req.getParameter("id"));
+        System.out.println("id"+id);
+
+        BirthCertificateService birthCertificateService=new BirthCertificateImpl();
+        BirthCertificateDTO dto=birthCertificateService.findById(id);
+//        System.out.println("servlet dto"+dto);
+        if (dto==null){
+            System.out.println("id is  in valid");
+            String error="id is in valid";
+            req.setAttribute("error",error);
+            RequestDispatcher requestDispatcher=req.getRequestDispatcher("SearchBirthCertificate.jsp");
+            requestDispatcher.forward(req,resp);
+        }
+        else {
+            req.setAttribute("id",id);
+            req.setAttribute("dto",dto);
+            RequestDispatcher requestDispatcher=req.getRequestDispatcher("SearchBirthCertificate.jsp");
+            requestDispatcher.forward(req,resp);
+        }
 
     }
 }

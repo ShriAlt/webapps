@@ -4,5 +4,5 @@ import com.xworkz.general.dto.BirthCertificateDTO;
 
 public interface BirthCertificateRepository {
     void save(BirthCertificateDTO birthCertificateDTO);
-
+BirthCertificateDTO findById(int id);
 }

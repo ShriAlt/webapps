@@ -14,10 +14,19 @@ public class JobRepositoryImpl implements JobRepository{
             String username="root";
             String  password="@Mythsri.com10";
             Connection connection = DriverManager.getConnection(url,username,password);
-            Statement statement=connection.createStatement();
-            String sql="insert into job_details values(0,'"+dto.getEmail()+"','"+dto.getEducation()+"','"+dto.getSkills()+"','"+dto.getExpectedSalary()+"','"+dto.getExperience()+"') ";
-
-            statement.execute(sql);
+//            Statement statement=connection.createStatement();
+//            String sql="insert into job_details values(0,'"+dto.getEmail()+"','"+dto.getEducation()+"','"+dto.getSkills()+"','"+dto.getExpectedSalary()+"','"+dto.getExperience()+"') ";
+//
+//            statement.execute(sql);
+            String sql="insert into job_details values(?,?,?,?,?,?) ";
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            preparedStatement.setInt(1,0);
+            preparedStatement.setString(2,dto.getEmail());
+            preparedStatement.setString(3,dto.getEducation());
+            preparedStatement.setString(4,dto.getSkills());
+            preparedStatement.setInt(5,dto.getExpectedSalary());
+            preparedStatement.setString(6,dto.getExperience());
+            preparedStatement.executeUpdate();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
@@ -34,8 +43,12 @@ public class JobRepositoryImpl implements JobRepository{
             String username="root";
             String  password="@Mythsri.com10";
             Connection connection = DriverManager.getConnection(url,username,password);
-            Statement statement=connection.createStatement();
-            ResultSet resultSet=statement.executeQuery("select * from job_details where id="+id+" ");
+//            Statement statement=connection.createStatement();
+//            ResultSet resultSet=statement.executeQuery("select * from job_details where id="+id+" ");
+            String sql="select * from job_details where id= ?" ;
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet=preparedStatement.executeQuery();
             System.out.println("resultset "+resultSet);
 
             while (resultSet.next()) {
