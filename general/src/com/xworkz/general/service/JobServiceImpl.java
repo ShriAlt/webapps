@@ -4,6 +4,8 @@ import com.xworkz.general.dto.JobApplicationDTO;
 import com.xworkz.general.repository.JobRepository;
 import com.xworkz.general.repository.JobRepositoryImpl;
 
+import java.util.List;
+
 public class JobServiceImpl implements JobService {
     @Override
     public String validate(JobApplicationDTO dto) {
@@ -28,5 +30,12 @@ public class JobServiceImpl implements JobService {
         return jobApplicationDTO;
         }
 
+    }
+
+    @Override
+    public List<JobApplicationDTO> searchAll() {
+        JobRepository jobRepository=new JobRepositoryImpl();
+        List<JobApplicationDTO> dto= jobRepository.findAll();
+        return dto;
     }
 }

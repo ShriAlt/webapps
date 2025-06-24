@@ -30,18 +30,11 @@
         </div>
     </div>
 </nav>
-
 <div class="container text-center">
-    <h2><strong> Search for jobs </strong></h2>
-    <form action="JobApplicationServlet" method="get">
-        jobs : <input type="search" name="id">
-        <button type="submit">search</button>
-    </form>
+    <span style="color:red">${error}</span><span STYLE="color:green">${result}</span>
+    <a href="SearchAll">find all jobs profiles</a>
 
 </div>
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

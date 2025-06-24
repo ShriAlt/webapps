@@ -1,8 +1,11 @@
 package com.xworkz.general.repository;
 
+import com.xworkz.general.constants.DbConstants;
 import com.xworkz.general.dto.JobApplicationDTO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JobRepositoryImpl implements JobRepository{
     @Override
@@ -76,5 +79,40 @@ public class JobRepositoryImpl implements JobRepository{
         }
         return null;
     }
+
+    @Override
+    public List<JobApplicationDTO> findAll() {
+        try {
+            List<JobApplicationDTO> jobList = new ArrayList<>();
+            Class.forName(DbConstants.DRIVER.getProp());
+            Connection connection = DriverManager.getConnection(DbConstants.URL.getProp(),DbConstants.USERNAME.getProp(), DbConstants.PASSWORD.getProp());
+            String sql="select * from job_details" ;
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+           ResultSet resultSet= preparedStatement.executeQuery();
+           while (resultSet.next()){
+               int id=resultSet.getInt(1);
+             String email=  resultSet.getString(2);
+               String education=  resultSet.getString(3);
+               String skills=  resultSet.getString(4);
+               int expectedSalary=  resultSet.getInt(5);
+               String experience=  resultSet.getString(6);
+               JobApplicationDTO jobApplicationDTO=new JobApplicationDTO();
+
+               jobApplicationDTO.setId(id);
+               jobApplicationDTO.setEmail(email);
+               jobApplicationDTO.setEducation(education);
+               jobApplicationDTO.setSkills(skills);
+               jobApplicationDTO.setExpectedSalary(expectedSalary);
+               jobApplicationDTO.setExperience(experience);
+//               System.out.println(jobApplicationDTO);
+                jobList.add(jobApplicationDTO);
+           }
+return jobList;
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
+}
 
