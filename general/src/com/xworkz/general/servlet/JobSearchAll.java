@@ -25,6 +25,7 @@ public class JobSearchAll extends HttpServlet {
             RequestDispatcher requestDispatcher=req.getRequestDispatcher("JobFullDetails.jsp");
             requestDispatcher.forward(req,resp);
         }
+
         else {
             String result="Details are found";
             req.setAttribute("result",result);

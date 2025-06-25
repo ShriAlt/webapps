@@ -48,11 +48,15 @@ public class JobRepositoryImpl implements JobRepository{
             Connection connection = DriverManager.getConnection(url,username,password);
 //            Statement statement=connection.createStatement();
 //            ResultSet resultSet=statement.executeQuery("select * from job_details where id="+id+" ");
-            String sql="select * from job_details where id= ?" ;
-            PreparedStatement preparedStatement=connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
-            ResultSet resultSet=preparedStatement.executeQuery();
-            System.out.println("resultset "+resultSet);
+//            String sql="select * from job_details where id= ?" ;
+//            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+//            preparedStatement.setInt(1,id);
+//            ResultSet resultSet=preparedStatement.executeQuery();
+//            System.out.println("resultset "+resultSet);
+            String procedureCall = "{ call GetJobApplicationById(?) }";
+            CallableStatement callableStatement = connection.prepareCall(procedureCall);
+            callableStatement.setInt(1, id);
+            ResultSet resultSet = callableStatement.executeQuery();
 
             while (resultSet.next()) {
                 int pk=resultSet.getInt("id");
@@ -101,6 +105,10 @@ public class JobRepositoryImpl implements JobRepository{
                jobApplicationDTO.setId(id);
                jobApplicationDTO.setEmail(email);
                jobApplicationDTO.setEducation(education);
+
+
+
+
                jobApplicationDTO.setSkills(skills);
                jobApplicationDTO.setExpectedSalary(expectedSalary);
                jobApplicationDTO.setExperience(experience);
