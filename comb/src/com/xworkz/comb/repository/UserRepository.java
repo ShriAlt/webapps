@@ -10,5 +10,7 @@ public interface UserRepository {
     String checkByUserId(String userId);
     String checkByPassword(String password);
     String checkForEmail(String userId);
+    void updatePassword(String userId,String password);
+
 
 }

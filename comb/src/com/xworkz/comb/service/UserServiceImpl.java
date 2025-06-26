@@ -8,6 +8,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.Random;
 
 public class UserServiceImpl implements UserService {
 
@@ -57,17 +58,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String fetchEmail(UserDTO dto) {
-        UserRepository userRepository=new UserRepositoryImpl();
-        if (userRepository.existByUserId(dto.getUserId())){
-            String email=userRepository.checkForEmail(dto.getUserId());
-
-            return "true";
-        }
-        return "false";
-    }
-
-    @Override
     public void sendOtpEmail(String toEmail, String otp) {
         final String fromEmail = "shriharshakm10@gmail.com";
         final String emailPassword = "bvyt fhuo eoqd frgq";
@@ -88,30 +78,17 @@ public class UserServiceImpl implements UserService {
         Message message = new MimeMessage(session);
         try {
             message.setFrom(new InternetAddress(fromEmail));
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             message.setSubject("Your OTP Code");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             message.setText("Your OTP is: " + otp);
+            Transport.send(message);
+            System.out.println("OTP sent successfully to " + toEmail);
+
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            throw new RuntimeException("Failed to send OTP email", e);
         }
 
-        try {
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
         System.out.println("OTP sent successfully to " + toEmail);
 
 
@@ -119,6 +96,47 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String generateOtp(int length) {
-        return "";
+        String numbers = "0123456789";
+        Random random = new Random();
+        StringBuilder otp = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            otp.append(numbers.charAt(random.nextInt(numbers.length())));
+        }
+        return otp.toString();
+    }
+    @Override
+    public String checkUserId(UserDTO dto) {
+        UserRepository userRepository=new UserRepositoryImpl();
+        if (userRepository.existByUserId(dto.getUserId())){
+            return dto.getUserId();
+        }
+        return "false";
+    }
+
+    @Override
+    public String validateOtp(String userOtp,String sentOtp,String userId) {
+        if (userOtp.equals(sentOtp)){
+         return "true";
+        }
+        return "false";
+    }
+
+    @Override
+    public String sendOtp(String userId) {
+        String otp=generateOtp(6);
+        UserRepository userRepository=new UserRepositoryImpl();
+        String email=userRepository.checkForEmail(userId);
+        sendOtpEmail(email,otp);
+        return otp;
+    }
+
+    @Override
+    public String updatePassword(String userId, String password, String confirmPassword) {
+        if (password.equals(confirmPassword)){
+            UserRepository userRepository=new UserRepositoryImpl();
+            userRepository.updatePassword(userId,password);
+            return "true";
+        }
+        return "false";
     }
 }

@@ -5,9 +5,12 @@ import com.xworkz.comb.dto.UserDTO;
 public interface UserService {
     String validate(UserDTO dto);
     String check(UserDTO dto);
-    String fetchEmail(UserDTO dto);
+    String checkUserId(UserDTO dto);
     String generateOtp(int length);
      void sendOtpEmail(String toEmail, String otp);
+     String validateOtp(String userOtp,String sentOtp,String userId);
+     String sendOtp(String userId);
+     String updatePassword(String userId,String password,String confirmPassword);
 
 
 }

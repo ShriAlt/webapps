@@ -138,4 +138,22 @@ public class UserRepositoryImpl implements UserRepository{
         }
         return null;
     }
+
+    @Override
+    public void updatePassword(String userId, String password) {
+        try {
+            Class.forName(DbConstant.DRIVER.getProp());
+            Connection connection= DriverManager.getConnection(DbConstant.RL.getProp(),DbConstant.USERNAME.getProp(), DbConstant.PASSWORD.getProp());
+
+            String sql = "UPDATE user_info SET password = ? WHERE user_Id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
