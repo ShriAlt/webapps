@@ -5,7 +5,9 @@ public enum DbConstant {
     USERNAME("root"),
     PASSWORD("@Mythsri.com10"),
     DRIVER("com.mysql.cj.jdbc.Driver");
-    String prop;
+
+
+   private String prop;
 
     DbConstant(String prop) {
         this.prop = prop;
