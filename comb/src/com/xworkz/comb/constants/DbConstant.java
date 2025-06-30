@@ -9,6 +9,7 @@ public enum DbConstant {
 
    private String prop;
 
+
     DbConstant(String prop) {
         this.prop = prop;
     }
