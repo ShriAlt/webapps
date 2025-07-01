@@ -17,22 +17,17 @@ import java.util.List;
 public class JobSearchAll extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JobService jobService=new JobServiceImpl();
-        List<JobApplicationDTO> dto=jobService.searchAll();
-        if (dto==null){
-            String error="not found";
-            req.setAttribute("error",error);
-            RequestDispatcher requestDispatcher=req.getRequestDispatcher("JobFullDetails.jsp");
-            requestDispatcher.forward(req,resp);
-        }
+        JobService jobService = new JobServiceImpl();
+        List<JobApplicationDTO> dto = jobService.searchAll();
 
-        else {
-            String result="Details are found";
-            req.setAttribute("result",result);
-            req.setAttribute("dto",dto);
-            System.out.println("servlet"+dto);
-            RequestDispatcher requestDispatcher=req.getRequestDispatcher("JobFullDetails.jsp");
-            requestDispatcher.forward(req,resp);
+        if (dto == null || dto.isEmpty()) {
+            req.setAttribute("error", "No job applications found.");
+        } else {
+            req.setAttribute("result", "Job application details retrieved.");
+            req.setAttribute("dto", dto);
+            System.out.println("DTO from servlet: " + dto);
         }
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("JobFullDetails.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }

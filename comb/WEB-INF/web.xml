@@ -1,0 +1,4 @@
+<taglib>
+    <taglib-uri>http://xworkz.com/tags</taglib-uri>
+    <taglib-location>/WEB-INF/tlds/myTags.tld</taglib-location>
+</taglib>
