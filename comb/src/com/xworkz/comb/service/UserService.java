@@ -1,5 +1,6 @@
 package com.xworkz.comb.service;
 
+import com.xworkz.comb.dto.ImageDTO;
 import com.xworkz.comb.dto.UserDTO;
 
 public interface UserService {
@@ -11,6 +12,8 @@ public interface UserService {
      String validateOtp(String userOtp,String sentOtp,String userId);
      String sendOtp(String userId);
      String updatePassword(String userId,String password,String confirmPassword);
+     String validateImage(ImageDTO dto);
+     ImageDTO fetchImage(String userId);
 
 
 }

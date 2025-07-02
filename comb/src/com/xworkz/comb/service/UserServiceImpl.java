@@ -1,5 +1,6 @@
 package com.xworkz.comb.service;
 
+import com.xworkz.comb.dto.ImageDTO;
 import com.xworkz.comb.dto.UserDTO;
 import com.xworkz.comb.repository.UserRepository;
 import com.xworkz.comb.repository.UserRepositoryImpl;
@@ -138,5 +139,29 @@ public class UserServiceImpl implements UserService {
             return "true";
         }
         return "false";
+    }
+
+    @Override
+    public String validateImage(ImageDTO dto) {
+        UserRepository userRepository=new UserRepositoryImpl();
+        String userId=dto.getUserId();
+        if (userRepository.existByUserId(userId)){
+            userRepository.saveImageData(dto);
+            return "true";
+        }
+        return "false";
+    }
+
+    @Override
+    public ImageDTO fetchImage(String userId) {
+        UserRepository userRepository=new UserRepositoryImpl();
+        if (userRepository.existByUserId(userId)){
+            ImageDTO dto=userRepository.fetchById(userId);
+            System.out.println("service dto==="+dto);
+            if (dto!=null){
+                return dto;
+            }
+        }
+        return null;
     }
 }

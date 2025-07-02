@@ -1,6 +1,7 @@
 package com.xworkz.comb.repository;
 
 import com.xworkz.comb.constants.DbConstant;
+import com.xworkz.comb.dto.ImageDTO;
 import com.xworkz.comb.dto.UserDTO;
 
 import java.sql.*;
@@ -155,5 +156,55 @@ public class UserRepositoryImpl implements UserRepository{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void saveImageData(ImageDTO dto) {
+        try {
+            Class.forName(DbConstant.DRIVER.getProp());
+            Connection connection= DriverManager.getConnection(DbConstant.RL.getProp(),DbConstant.USERNAME.getProp(), DbConstant.PASSWORD.getProp());
+            Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+            String sql = "INSERT INTO user_images (user_id, file_name, file_path, content_type, file_size) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,dto.getUserId());
+            preparedStatement.setString(2,dto.getFileName());
+            preparedStatement.setString(3,dto.getFullPath());
+            preparedStatement.setString(4,dto.getContentType());
+            preparedStatement.setLong(5,dto.getSize());
+            preparedStatement.executeUpdate();
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ImageDTO fetchById(String userId) {
+        try {
+            Class.forName(DbConstant.DRIVER.getProp());
+            Connection connection= DriverManager.getConnection(DbConstant.RL.getProp(),DbConstant.USERNAME.getProp(), DbConstant.PASSWORD.getProp());
+
+            String sql="select * from user_images where user_Id= ? ";
+            PreparedStatement preparedStatement=connection.prepareStatement(sql);
+            preparedStatement.setString(1,userId);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            ImageDTO dto=new ImageDTO();
+            if (resultSet.next()){
+                dto.setUserId(userId);
+                String contentType=resultSet.getString(5);
+                dto.setContentType(contentType);
+                dto.setFileName(resultSet.getString(3));
+                dto.setFullPath(resultSet.getString(4));
+                System.out.println("repoImpl dto==="+dto);
+                return dto;
+            }
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }

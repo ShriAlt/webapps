@@ -1,5 +1,6 @@
 package com.xworkz.comb.repository;
 
+import com.xworkz.comb.dto.ImageDTO;
 import com.xworkz.comb.dto.UserDTO;
 
 public interface UserRepository {
@@ -11,6 +12,7 @@ public interface UserRepository {
     String checkByPassword(String password);
     String checkForEmail(String userId);
     void updatePassword(String userId,String password);
-
+    void saveImageData(ImageDTO dto);
+    ImageDTO fetchById(String userId);
 
 }
