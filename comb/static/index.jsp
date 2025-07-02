@@ -52,6 +52,7 @@
         <a href="SignInPage.jsp" class="btn btn-primary btn-custom">Sign In</a>
         <a href="SignUpPage.jsp" class="btn btn-outline-success btn-custom">Sign Up</a>
         <a href="CoustomTag.jsp" class="btn btn-outline-success btn-custom">coustom tag</a>
+        <a href="UploadImage.jsp" class="btn btn-outline-success btn-custom">upload </a>
     </div>
 </div>
 
