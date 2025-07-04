@@ -31,10 +31,13 @@ public class UploadServlet extends HttpServlet {
         String fileName = imagepart.getSubmittedFileName();
         String contentType=imagepart.getContentType();
         long size=imagepart.getSize();
+
         String userId= req.getParameter("userId");
-        String fullPath = UPLOAD_DIR + File.separator + fileName;
+
+        String fullPath = UPLOAD_DIR + File.separator + fileName ;
 
         imagepart.write(fullPath);
+
         //passing meta data
         ImageDTO imageDTO=new ImageDTO(fileName,contentType,size,userId,fullPath);
         System.out.println("image DTO"+imageDTO);

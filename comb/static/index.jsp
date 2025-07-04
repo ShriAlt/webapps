@@ -53,6 +53,7 @@
         <a href="SignUpPage.jsp" class="btn btn-outline-success btn-custom">Sign Up</a>
         <a href="ProfilePage.jsp" class="btn btn-outline-success btn-custom">profile page</a>
         <a href="UploadImage.jsp" class="btn btn-outline-success btn-custom">upload </a>
+        <a href="ExcelUploadPage.jsp" class="btn btn-outline-success btn-custom">excel upload </a>
     </div>
 </div>
 

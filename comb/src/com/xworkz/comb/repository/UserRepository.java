@@ -14,5 +14,4 @@ public interface UserRepository {
     void updatePassword(String userId,String password);
     void saveImageData(ImageDTO dto);
     ImageDTO fetchById(String userId);
-
 }
